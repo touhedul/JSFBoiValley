@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="login_layout.xhtml">
+            <ui:define name="content">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                Login 
+                            </div>
+                            <div class="card-body">
+                                 
+                                <h:form>
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <h:inputText value="#{user.email}" class="form-control"/>
+                                    <label for="asdf">Password</label>
+                                    <h:inputSecret value="#{user.password}" class="form-control"/><br/>
+                                    <h:commandButton class="btn btn-success" action="#{user.login()}" value="Login"/>
+                                </h:form>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+        
+    </h:body>
+</html>
+

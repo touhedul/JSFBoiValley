@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Contact</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="login_layout.xhtml">
+            <ui:define name="content">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                Contact Us 
+                            </div>
+                            <div class="card-body">
+                                <h:form>
+                                    <label for="exampleInputEmail1">Name</label>
+                                    <h:inputText required="true" class="form-control" value=""/>
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <h:inputText required="true" class="form-control" value=""/>
+                                    <label for="exampleInputEmail1">Phone</label>
+                                    <h:inputText required="true" class="form-control" value=""/>
+
+                                    <label for="exampleInputEmail1">Message</label>
+                                    <h:inputTextarea class="form-control" value=""/><br/>
+                                </h:form>
+                                <h:form>
+                                    <h:commandLink class="btn btn-primary" value="Submit" action="contact_submit?faces-redirect=true"/> 
+                                </h:form>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

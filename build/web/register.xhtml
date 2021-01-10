@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="login_layout.xhtml">
+            <ui:define name="content">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                Register 
+                            </div>
+                            <div class="card-body">
+                                <h:form>
+                                    <label for="exampleInputEmail1">Name</label>
+                                    <h:inputText required="true" class="form-control" value="${user.name}"/>
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <h:inputText required="true" class="form-control" value="${user.email}"/>
+                                    <label for="exampleInputEmail1">Phone</label>
+                                    <h:inputText required="true" class="form-control" value="${user.phone}"/>
+
+                                    <label for="exampleInputEmail1">Department</label>
+                                    <h:selectOneMenu class="form-control" value="${user.department}">
+                                        <f:selectItem itemValue="ICE" itemLabel="ICE"/>
+                                        <f:selectItem itemValue="ES" itemLabel="ES"/>
+                                        <f:selectItem itemValue="English" itemLabel="English"/>
+                                    </h:selectOneMenu>
+                                    <label for="exampleInputEmail1">Password</label>
+                                    <h:inputSecret required="true" class="form-control" value="${user.password}"/><br/>
+                                    
+                                    <h:commandButton action="${user.register()}" class="btn btn-primary" value="Register"/>
+                                </h:form>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

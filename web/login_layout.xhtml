@@ -1,0 +1,280 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title></title>
+        <meta charset="UTF-8"/>
+        <meta name="description" content=" Divisima | eCommerce Template"/>
+        <meta name="keywords" content="divisima, eCommerce, creative, html"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!-- Favicon -->
+        <link href="/BoiValleyNew/assets/my_files/favicon.ico" rel="shortcut icon" />
+
+
+        <!-- Stylesheets -->
+        <link  href="/BoiValleyNew/assets/frontend/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="/BoiValleyNew/assets/frontend/css/font-awesome.min.css" />
+        <link href="/BoiValleyNew/assets/frontend/css/mycss.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="/BoiValleyNew/assets/frontend/css/flaticon.css" />
+        <link rel="stylesheet" href="/BoiValleyNew/assets/frontend/css/slicknav.min.css" />
+        <link rel="stylesheet" href="/BoiValleyNew/assets/frontend/css/jquery-ui.min.css" />
+        <link rel="stylesheet" href="/BoiValleyNew/assets/frontend/css/owl.carousel.min.css" />
+        <link rel="stylesheet" href="/BoiValleyNew/assets/frontend/css/animate.css" />
+        <link rel="stylesheet" href="/BoiValleyNew/assets/frontend/css/style.css" />
+
+        <link href="/BoiValleyNew/assets/css/parsley.css" rel="stylesheet"/>
+        <link href="/BoiValleyNew/assets/css/easy-autocomplete.min.css" rel="stylesheet"/>
+        <link href="/BoiValleyNew/assets/css/easy-autocomplete.themes.min.css" rel="stylesheet"/>
+        <link href="/BoiValleyNew/assets/my_files/mycss.css" rel="stylesheet"/>
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet"/>
+
+    </h:head>
+    <h:body>
+        <div class=" fixed-top navbar navbar-expand-lg navbar-light bg-light">
+            <a href="/BoiValleyNew" class="site-logo">
+                &nbsp;&nbsp;&nbsp;
+                <h:graphicImage value="/assets/my_files/main-logo.png"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+                <h:form id="search_form" class="header-search-form ml-auto">
+                    <input placeholder="Search..." type="text" name="search_key" id="search_box" required ="true"/>
+                    <button><i class="flaticon-search"></i></button>
+                </h:form>
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <!-- <li style="margin-left:250px;"><a class="nav-link" href="#"></a></li> -->
+                    <!-- <li><a class="nav-link" href="#">home</a></li>
+    <li><a class="nav-link" href="#">hello</a></li> -->
+                    <h:column rendered="#{empty loginUser}">
+                        <li>
+                            <div class="user-panel">
+                                <div class="up-item">
+
+
+
+                                    <h:form>
+                                        <i class="fa fa-sign-in"></i>   <h:commandLink value="Sign In" action="login?faces-redirect=true"/>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="user-panel">
+                                <div class="up-item"> 
+                                    <h:form>
+                                        <i class="fa fa-user"></i>   <h:commandLink value="Create Account" action="register?faces-redirect=true"/>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </li>
+                    </h:column>
+                    <h:column rendered="#{not empty loginUser}">
+                        <li class="nav-item dropdown">
+
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span style="color: black;"> <i class="fa fa-user"></i> My account </span> <span
+                                    class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <h:form>
+                                    <h:commandLink class="dropdown-item" value="Dashboard" action="welcome?faces-redirect=true"/>
+                                </h:form>
+                                <h:form>
+                                    <h:commandLink class="dropdown-item" value="Profile Settings" action="#{user.profile()}"/>
+                                </h:form>
+                                <h:form>
+                                    <h:commandLink class="dropdown-item" value="All Books" action="books?faces-redirect=true"/>
+                                </h:form>
+                                <h:form>
+                                    <h:commandLink class="dropdown-item" value="Add Book" action="add_book?faces-redirect=true"/>
+                                </h:form>
+                                <a class="dropdown-item" href="sold.book.list">Sold Books</a>
+                                <a class="dropdown-item" href="bought.book.list">Bought Books</a>
+                                <!--<a class="dropdown-item" href="change.password.view">Change Password</a>-->
+                                <h:form>
+                                    <h:commandLink class="dropdown-item" value="Logout" action="#{user.logout()}"/>
+                                </h:form>
+                                <form id="logout-form" action="logout" method="POST" style="display: none;">
+
+                                </form>
+                            </div>
+                        </li>
+                    </h:column>
+                </ul>
+            </div>
+
+        </div>
+        <header style="margin-top: 25px;" class="header-section">
+            <div class="header-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-2 text-center text-lg-left">
+                            <!-- logo -->
+                            <a href="index" class="site-logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="main-navbar">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <!-- menu -->
+                        <ul class="main-menu">
+                            <li><a href="/BoiValleyNew">Home</a></li>
+
+                            <li><a href="#">Departmental Books</a>
+                                <ul style="height: 120px; overflow: auto" class="sub-menu">
+                                    <li>
+                                        <a href="#">ICE</a>
+                                        <a href="#">ES</a>
+                                        <a href="#">English</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li> <h:form>
+                                    <h:commandLink  value="Contact" action="contact?faces-redirect=true"/>
+                                </h:form></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <br/>
+        <ui:insert name="content"/><br/>
+        <!-- Footer section -->
+        <section class="footer-section">
+            <div class="container">
+                <div class="footer-logo text-center">
+                </div> 
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-widget about-widget">
+                            <h2>About</h2>
+                            <p>Boi Valley is a platform where anyone can buy and sell their books. It helps to reuse the
+                                unused
+                                books.</p>
+                            <img src="img/cards.png" alt=""/>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-widget about-widget">
+                            <h2>Account</h2>
+                            <ul>
+                                <h:column rendered="#{not empty loginUser}">
+                                <li><a href="dashboard"> Dashboard </a> </li>
+                                <li><a href="change.profile.page"> Profile Settings</a>
+                                </li>
+                                <li><a href="advertise.books">Sell Book</a> </li>
+                                <li><a href="sold.book.list">Sold Books</a> </li>
+                                <li><a href="bought.book.list">Bought Books</a>
+                                </li>
+                                <li><a href="change.password.view">Change Password</a>
+                                </li>
+                                <li><a href="logout" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a> </li>
+                                </h:column>
+                                 <h:column rendered="#{empty loginUser}">
+                                <li><a href="login">Sign in</a></li>
+                                <li><a href="register">Create Account</a></li>
+                                 </h:column>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-widget about-widget">
+                            <h2>Boi Valley</h2>
+                            <ul>
+                                <li><a href="help">Give Feedback</a></li>
+                                <li><a href="terms.and.conditions">Terms and Conditions</a></li>
+                                <li><a href="privacy.policy">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-widget contact-widget">
+                            <h2>Contact</h2>
+                            <div class="con-info">
+                                <span><a href="contact">Quick Contact</a></span>
+                                <p><br/></p>
+                            </div>
+                            <div class="con-info">
+                                <span>Mobile.</span>
+                                <p>+880 1833 996 321</p>
+                            </div>
+                            <div class="con-info">
+                                <span>Email.</span>
+                                <p>support@boivalley.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="social-links-warp">
+                {{-- <div class="container">
+				<div class="row justify-content-cente">
+					<div class="social-links ml-auto mr-auto">
+						<a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+						<a href="" class="google-plus"><i class="fa fa-google-plus"></i><span>g+plus</span></a>
+						<a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+						<a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+						<a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
+					</div>
+				</div>
+			</div> --}}
+
+                <p class="text-white text-center mt-5">Copyright &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script> All rights reserved to Boi Valley  <i class="fa fa-heart-o"
+                                                                    aria-hidden="true"></i> <a style="color:yellow" href="https://skoder.co" target="_blank"></a>
+                </p>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+            </div>
+        </section>
+        <!-- Footer section end -->
+
+
+
+        <!--====== Javascripts & Jquery ======-->
+        <script src="/BoiValleyNew/assets/frontend/js/jquery-3.2.1.min.js"></script>
+        <script src="/BoiValleyNew/assets/frontend/js/bootstrap.min.js"></script>
+        <script src="/BoiValleyNew/assets/frontend/js/jquery.slicknav.min.js"></script>
+        <script src="/BoiValleyNew/assets/frontend/js/owl.carousel.min.js"></script>
+        <script src="/BoiValleyNew/assets/frontend/js/jquery.nicescroll.min.js"></script>
+        <script src="/BoiValleyNew/assets/frontend/js/jquery.zoom.min.js"></script>
+        <script src="/BoiValleyNew/assets/frontend/js/jquery-ui.min.js"></script>
+        <script src="/BoiValleyNew/assets/frontend/js/main.js"></script>
+
+
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+        {{--parsley--}}
+        <script src="js/parsley.js" ></script>
+        {{--SweetAlert--}}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        {{--automomplete--}}
+        <script src="js/jquery.easy-autocomplete.min.js" ></script>
+        {{--bootstrap js--}}
+        {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> --}}
+        <!-- Fonts -->
+
+
+    </h:body>
+
+</html>

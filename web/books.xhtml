@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Dashboard</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="login_layout.xhtml">
+            <ui:define name="content">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                Your Books 
+                            </div>
+                            <div class="card-body">
+                                <h:dataTable value="#{book.allBooks()}" var="dataBook"   
+                                             class="table table-striped table-hover table-bordered">   
+                                    <h:column>  
+                                        <f:facet name="header">Book Name</f:facet>  
+                                        <h:outputText value="#{dataBook.name}"/>  
+                                    </h:column>  
+                                    <h:column>  
+                                        <f:facet name="header">Author Name</f:facet>  
+                                        <h:outputText value="#{dataBook.authorName}"/>  
+                                    </h:column> 
+                                    <h:column>  
+                                        <f:facet name="header">Description</f:facet>  
+                                        <h:outputText value="#{dataBook.description}"/>  
+                                    </h:column> 
+                                    <h:column>  
+                                        <f:facet name="header">Department</f:facet>  
+                                        <h:outputText value="#{dataBook.department}"/>  
+                                    </h:column> 
+                                    <h:column>  
+                                        <f:facet name="header">Price</f:facet>  
+                                        <h:outputText value="#{dataBook.price}"/>  
+                                    </h:column> 
+                                    <h:column>  
+                                        <f:facet name="header">Year</f:facet>  
+                                        <h:outputText value="#{dataBook.year}"/>  
+                                    </h:column> 
+                                    <h:column>
+                                        <f:facet name="header">Update</f:facet>  
+                                        <h:form>
+                                            <h:commandButton action="#{book.edit(dataBook.id)}" value="Edit" class="btn btn-primary">  
+                                            </h:commandButton>  
+                                        </h:form>
+                                    </h:column>  
+                                    <h:column>
+                                        <f:facet name="header">Delete</f:facet>  
+                                        <h:form>
+                                            <h:commandButton action="#{book.delete(dataBook.id)}" value="Delete" class="btn btn-danger">  
+                                            </h:commandButton>  
+                                        </h:form>
+                                    </h:column>  
+                                </h:dataTable>  
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

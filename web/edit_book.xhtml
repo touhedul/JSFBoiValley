@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Add Book</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="login_layout.xhtml">
+            <ui:define name="content">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                Edit Book 
+                            </div>
+                            <div class="card-body">
+                                <h:form>
+                                    <label for="exampleInputEmail1">Book Name</label>
+                                    <h:inputText required="true" class="form-control" value="${editBook.name}"/>
+                                    <label for="exampleInputEmail1">Author Name</label>
+                                    <h:inputText required="true" class="form-control" value="${editBook.authorName}"/>
+                                    <label for="exampleInputEmail1">Description</label>
+                                    
+                                    <h:inputTextarea required="true" class="form-control" value="${editBook.description}"/>
+                                    <label for="exampleInputEmail1">Department</label>
+                                    <h:selectOneMenu class="form-control" value="${editBook.department}">
+                                        <f:selectItem itemValue="ICE" itemLabel="ICE"/>
+                                        <f:selectItem itemValue="ES" itemLabel="ES"/>
+                                        <f:selectItem itemValue="English" itemLabel="English"/>
+                                    </h:selectOneMenu>
+                                    <label for="exampleInputEmail1">Price</label>
+                                    <h:inputText required="true" class="form-control" value="${editBook.price}"/>
+                                    <label for="exampleInputEmail1">Year</label>
+                                    <h:selectOneMenu class="form-control" value="${editBook.year}">
+                                        <f:selectItem itemValue="1st" itemLabel="1st"/>
+                                        <f:selectItem itemValue="2nd" itemLabel="2nd"/>
+                                        <f:selectItem itemValue="3rd" itemLabel="3rd"/>
+                                        <f:selectItem itemValue="4th" itemLabel="4th"/>
+                                    </h:selectOneMenu>
+
+                                    <h:commandButton action="${book.update(editBook)}" class="btn btn-primary" value="Update"/>
+                                </h:form>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+
