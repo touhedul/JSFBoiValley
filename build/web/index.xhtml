@@ -2,118 +2,133 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Boi Valley</title>
     </h:head>
     <h:body>
         <ui:composition template="login_layout.xhtml">
             <ui:define name="content">
-       
-        <!-- Slide area end -->
 
-        <section class="top-letest-product-section">
-            <div class="container">
-                <div class="section-title">
-                    <h3>ICE</h3>
-                </div>
-                <div class="product-slider owl-carousel">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <h:graphicImage value="/images/book.jpg" />
-                            <div class="pi-links">
-                                <a href="#" id="buybook" 
-                                   class="add-card buybook"><i class="flaticon-bag"></i><span>Buy book</span></a>
-                                <a href="#" class="add-card"><i class="fa fa-eye"></i><span>View
-                                        book</span></a>
+                <!-- Slide area end -->
+
+                <section class="top-letest-product-section">
+                    <div class="container">
+                        <div class="section-title">
+                            <h3>ICE</h3>
+                        </div>
+                        <div class="product-slider owl-carousel">
+                            
+                            <ui:repeat var="dataBook" value="#{book.indexBooks('ICE')}">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <h:graphicImage value="/images/book.jpg" />
+                                        <div class="pi-links">
+                                            <a href="#" id="buybook" 
+                                               class="add-card buybook"><i class="flaticon-bag"></i><span><h:form>
+                                                        <h:commandButton action="#{soldBook.buy(dataBook.id,dataBook.userId)}" value="Buy Book" />
+                                                       </h:form></span></a>
+                                               <a href="#" class="add-card"><i class="fa fa-eye"></i><span>
+                                                       <h:form>
+                                                           <h:commandButton action="#{book.view(dataBook.id)}" value="VIew Book" />
+                                                       </h:form>
+                                                   </span></a>
+                                        </div>
+                                    </div>
+                                    <div class="pi-text">
+                                        <h6>#{dataBook.price} </h6>
+                                        <p>#{dataBook.name} by #{dataBook.authorName} </p>
+                                    </div>
+                                </div>
+                            </ui:repeat>
+
+                        </div>
+                    </div>
+                </section>
+                <section class="top-letest-product-section">
+                    <div class="container">
+                        <div class="section-title">
+                            <h3>ES</h3>
+                        </div>
+                        <div class="product-slider owl-carousel">
+                            <ui:repeat var="dataBook" value="#{book.indexBooks('ES')}">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <h:graphicImage value="/images/book.jpg" />
+                                        <div class="pi-links">
+                                            <a href="#" id="buybook" 
+                                               class="add-card buybook"><i class="flaticon-bag"></i><span>Buy book</span></a>
+                                               <a href="#" class="add-card"><i class="fa fa-eye"></i><span>
+                                                       <h:form>
+                                                           <h:commandButton action="#{book.view(dataBook.id)}" />
+                                                       </h:form>
+                                                   </span></a>
+                                        </div>
+                                    </div>
+                                    <div class="pi-text">
+                                        <h6>#{dataBook.price} </h6>
+                                        <p>#{dataBook.name} by #{dataBook.authorName} </p>
+                                    </div>
+                                </div>
+                            </ui:repeat>
+                        </div>
+                    </div>
+                </section>
+                <section class="top-letest-product-section">
+                    <div class="container">
+                        <div class="section-title">
+                            <h3>English</h3>
+                        </div>
+                        <div class="product-slider owl-carousel">
+                            <div class="product-item">
+                                <div class="pi-pic">
+                                    <h:graphicImage value="/images/book.jpg" />
+                                    <div class="pi-links">
+                                        <a href="#" id="buybook" 
+                                           class="add-card buybook"><i class="flaticon-bag"></i><span>Buy book</span></a>
+                                        <a href="#" class="add-card"><i class="fa fa-eye"></i><span>View
+                                                book</span></a>
+                                    </div>
+                                </div>
+                                <div class="pi-text">
+                                    <h6>$35,00</h6>
+                                    <p>Flamboyant Pink Top </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="pi-text">
-                            <h6>$35,00</h6>
-                            <p>Flamboyant Pink Top </p>
-                        </div>
                     </div>
-                </div>
-            </div>
-        </section>
-        <section class="top-letest-product-section">
-            <div class="container">
-                <div class="section-title">
-                    <h3>ES</h3>
-                </div>
-                <div class="product-slider owl-carousel">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <h:graphicImage value="/images/book.jpg" />
-                            <div class="pi-links">
-                                <a href="#" id="buybook" 
-                                   class="add-card buybook"><i class="flaticon-bag"></i><span>Buy book</span></a>
-                                <a href="#" class="add-card"><i class="fa fa-eye"></i><span>View
-                                        book</span></a>
+                </section>
+
+                <!--Notification Modal -->
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                     id="notification_modal" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Notifications</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+                                <div id="message">
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
-                        <div class="pi-text">
-                            <h6>$35,00</h6>
-                            <p>Flamboyant Pink Top </p>
-                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="top-letest-product-section">
-            <div class="container">
-                <div class="section-title">
-                    <h3>English</h3>
-                </div>
-                <div class="product-slider owl-carousel">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <h:graphicImage value="/images/book.jpg" />
-                            <div class="pi-links">
-                                <a href="#" id="buybook" 
-                                   class="add-card buybook"><i class="flaticon-bag"></i><span>Buy book</span></a>
-                                <a href="#" class="add-card"><i class="fa fa-eye"></i><span>View
-                                        book</span></a>
-                            </div>
-                        </div>
-                        <div class="pi-text">
-                            <h6>$35,00</h6>
-                            <p>Flamboyant Pink Top </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!--Notification Modal -->
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-             id="notification_modal" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Notifications</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                        <div id="message">
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br/>
+                <br/>
             </ui:define>
 
         </ui:composition>
-        
+
     </h:body>
 </html>
 

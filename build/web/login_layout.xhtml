@@ -97,8 +97,12 @@
                                 <h:form>
                                     <h:commandLink class="dropdown-item" value="Add Book" action="add_book?faces-redirect=true"/>
                                 </h:form>
-                                <a class="dropdown-item" href="sold.book.list">Sold Books</a>
-                                <a class="dropdown-item" href="bought.book.list">Bought Books</a>
+                                <h:form>
+                                    <h:commandLink class="dropdown-item" value="Bought Books" action="bought_book?faces-redirect=true"/>
+                                </h:form>
+                                <h:form>
+                                    <h:commandLink class="dropdown-item" value="Sold Books" action="sold_book?faces-redirect=true"/>
+                                </h:form>
                                 <!--<a class="dropdown-item" href="change.password.view">Change Password</a>-->
                                 <h:form>
                                     <h:commandLink class="dropdown-item" value="Logout" action="#{user.logout()}"/>
@@ -135,9 +139,15 @@
                             <li><a href="#">Departmental Books</a>
                                 <ul style="height: 120px; overflow: auto" class="sub-menu">
                                     <li>
-                                        <a href="#">ICE</a>
-                                        <a href="#">ES</a>
-                                        <a href="#">English</a>
+                                        <h:form>
+                                            <h:commandLink value="ICE" action="department_book_ice?faces-redirect=true"/>
+                                        </h:form>
+                                        <h:form>
+                                            <h:commandLink value="ES" action="department_book_es?faces-redirect=true"/>
+                                        </h:form>
+                                        <h:form>
+                                            <h:commandLink value="English" action="department_book_english?faces-redirect=true"/>
+                                        </h:form>
                                     </li>
                                 </ul>
                             </li>
@@ -171,24 +181,24 @@
                             <h2>Account</h2>
                             <ul>
                                 <h:column rendered="#{not empty loginUser}">
-                                <li><a href="dashboard"> Dashboard </a> </li>
-                                <li><a href="change.profile.page"> Profile Settings</a>
-                                </li>
-                                <li><a href="advertise.books">Sell Book</a> </li>
-                                <li><a href="sold.book.list">Sold Books</a> </li>
-                                <li><a href="bought.book.list">Bought Books</a>
-                                </li>
-                                <li><a href="change.password.view">Change Password</a>
-                                </li>
-                                <li><a href="logout" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a> </li>
+                                    <li><a href="dashboard"> Dashboard </a> </li>
+                                    <li><a href="change.profile.page"> Profile Settings</a>
+                                    </li>
+                                    <li><a href="advertise.books">Sell Book</a> </li>
+                                    <li><a href="sold.book.list">Sold Books</a> </li>
+                                    <li><a href="bought.book.list">Bought Books</a>
+                                    </li>
+                                    <li><a href="change.password.view">Change Password</a>
+                                    </li>
+                                    <li><a href="logout" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a> </li>
                                 </h:column>
-                                 <h:column rendered="#{empty loginUser}">
-                                <li><a href="login">Sign in</a></li>
-                                <li><a href="register">Create Account</a></li>
-                                 </h:column>
+                                <h:column rendered="#{empty loginUser}">
+                                    <li><a href="login">Sign in</a></li>
+                                    <li><a href="register">Create Account</a></li>
+                                </h:column>
                             </ul>
                         </div>
                     </div>

@@ -102,12 +102,12 @@ public class Book {
     public String add() {
         System.out.println(name + " " + userId);
         String loginId = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("loginId");
-        
+
         int i = 0;
         try {
             DBConnection dBConnection = new DBConnection();
             Connection connection = dBConnection.getConnection();
-            
+
             PreparedStatement preparedStatement
                     = connection.prepareStatement("insert into books(name,author_name,description,price,department,year,user_id) "
                             + "value('" + name + "','" + authorName + "','" + description + "','" + price + "','" + department + "','" + year + "','" + loginId + "')");
@@ -130,8 +130,8 @@ public class Book {
             Connection connection = dBConnection.getConnection();
             Statement stmt = connection.createStatement();
             String loginId = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("loginId");
-        
-            ResultSet rs = stmt.executeQuery("select * from books where user_id = "+loginId);
+
+            ResultSet rs = stmt.executeQuery("select * from books where user_id = " + loginId);
             while (rs.next()) {
                 Book book = new Book();
                 book.setId(rs.getInt("id"));
@@ -141,6 +141,109 @@ public class Book {
                 book.setDescription(rs.getString("description"));
                 book.setYear(rs.getString("year"));
                 book.setPrice(rs.getInt("price"));
+                bookList.add(book);
+            }
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return bookList;
+    }
+    public ArrayList boughtBooks() {
+        ArrayList bookList = new ArrayList();
+        try {
+            DBConnection dBConnection = new DBConnection();
+            Connection connection = dBConnection.getConnection();
+            Statement stmt = connection.createStatement();
+            String loginId = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("loginId");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM books,sold_books WHERE sold_books.book_id = books.id AND sold_books.buyer_id="+ loginId);
+            while (rs.next()) {
+                Book book = new Book();
+                book.setId(rs.getInt("id"));
+                book.setName(rs.getString("name"));
+                book.setAuthorName(rs.getString("author_name"));
+                book.setDepartment(rs.getString("department"));
+                book.setDescription(rs.getString("description"));
+                book.setYear(rs.getString("year"));
+                book.setPrice(rs.getInt("price"));
+                bookList.add(book);
+            }
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return bookList;
+    }
+    public ArrayList soldBooks() {
+        ArrayList bookList = new ArrayList();
+        try {
+            DBConnection dBConnection = new DBConnection();
+            Connection connection = dBConnection.getConnection();
+            Statement stmt = connection.createStatement();
+            String loginId = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("loginId");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM books,sold_books WHERE sold_books.book_id = books.id AND sold_books.seller_id="+ loginId);
+            while (rs.next()) {
+                Book book = new Book();
+                book.setId(rs.getInt("id"));
+                book.setName(rs.getString("name"));
+                book.setAuthorName(rs.getString("author_name"));
+                book.setDepartment(rs.getString("department"));
+                book.setDescription(rs.getString("description"));
+                book.setYear(rs.getString("year"));
+                book.setPrice(rs.getInt("price"));
+                bookList.add(book);
+            }
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return bookList;
+    }
+    
+    public ArrayList indexBooks(String dept) {
+        ArrayList bookList = new ArrayList();
+        try {
+            DBConnection dBConnection = new DBConnection();
+            Connection connection = dBConnection.getConnection();
+            Statement stmt = connection.createStatement();
+
+            ResultSet rs = stmt.executeQuery("select * from books where status = 1 and department = '" + dept + "'");
+            while (rs.next()) {
+                Book book = new Book();
+                book.setId(rs.getInt("id"));
+                book.setName(rs.getString("name"));
+                book.setAuthorName(rs.getString("author_name"));
+                book.setDepartment(rs.getString("department"));
+                book.setDescription(rs.getString("description"));
+                book.setYear(rs.getString("year"));
+                book.setPrice(rs.getInt("price"));
+                book.setUserId(rs.getInt("user_id"));
+                bookList.add(book);
+            }
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return bookList;
+    }
+    public ArrayList departmentBooks(String dept) {
+        ArrayList bookList = new ArrayList();
+        try {
+            DBConnection dBConnection = new DBConnection();
+            Connection connection = dBConnection.getConnection();
+            Statement stmt = connection.createStatement();
+
+            ResultSet rs = stmt.executeQuery("select * from books where status = 1 and department = '" + dept + "'");
+            while (rs.next()) {
+                Book book = new Book();
+                book.setId(rs.getInt("id"));
+                book.setName(rs.getString("name"));
+                book.setAuthorName(rs.getString("author_name"));
+                book.setDepartment(rs.getString("department"));
+                book.setDescription(rs.getString("description"));
+                book.setYear(rs.getString("year"));
+                book.setPrice(rs.getInt("price"));
+                book.setUserId(rs.getInt("user_id"));
                 bookList.add(book);
             }
             connection.close();
@@ -174,6 +277,33 @@ public class Book {
             System.out.println(e);
         }
         return "/edit_book.xhtml?faces-redirect=true";
+    }
+
+    public String view(int id) {
+
+        Book book = null;
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        try {
+            DBConnection dBConnection = new DBConnection();
+            Connection connection = dBConnection.getConnection();
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from books where id = " + (id));
+            rs.next();
+            book = new Book();
+            book.setId(rs.getInt("id"));
+            book.setName(rs.getString("name"));
+            book.setAuthorName(rs.getString("author_name"));
+            book.setDepartment(rs.getString("department"));
+            book.setDescription(rs.getString("description"));
+            book.setYear(rs.getString("year"));
+            book.setPrice(rs.getInt("price"));
+            book.setUserId(rs.getInt("user_id"));
+            sessionMap.put("editBook", book);
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return "/view_book.xhtml?faces-redirect=true";
     }
 
     public String update(Book book) {
