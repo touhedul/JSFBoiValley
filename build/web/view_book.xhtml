@@ -41,7 +41,7 @@
                                         <f:selectItem itemValue="4th" itemLabel="4th"/>
                                     </h:selectOneMenu><br/>
 
-                                    <h:commandButton action="${book.update(editBook)}" class="btn btn-primary" value="Buy This Book"/>
+                                    <h:commandButton action="#{soldBook.buy(editBook.id,editBook.userId)}" class="btn btn-primary" value="Buy This Book"/>
                                 </h:form>
                             </div>
                         </div>

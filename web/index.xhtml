@@ -52,16 +52,19 @@
                             <h3>ES</h3>
                         </div>
                         <div class="product-slider owl-carousel">
+                            
                             <ui:repeat var="dataBook" value="#{book.indexBooks('ES')}">
                                 <div class="product-item">
                                     <div class="pi-pic">
                                         <h:graphicImage value="/images/book.jpg" />
                                         <div class="pi-links">
                                             <a href="#" id="buybook" 
-                                               class="add-card buybook"><i class="flaticon-bag"></i><span>Buy book</span></a>
+                                               class="add-card buybook"><i class="flaticon-bag"></i><span><h:form>
+                                                        <h:commandButton action="#{soldBook.buy(dataBook.id,dataBook.userId)}" value="Buy Book" />
+                                                       </h:form></span></a>
                                                <a href="#" class="add-card"><i class="fa fa-eye"></i><span>
                                                        <h:form>
-                                                           <h:commandButton action="#{book.view(dataBook.id)}" />
+                                                           <h:commandButton action="#{book.view(dataBook.id)}" value="VIew Book" />
                                                        </h:form>
                                                    </span></a>
                                         </div>
@@ -72,6 +75,7 @@
                                     </div>
                                 </div>
                             </ui:repeat>
+
                         </div>
                     </div>
                 </section>
@@ -81,21 +85,30 @@
                             <h3>English</h3>
                         </div>
                         <div class="product-slider owl-carousel">
-                            <div class="product-item">
-                                <div class="pi-pic">
-                                    <h:graphicImage value="/images/book.jpg" />
-                                    <div class="pi-links">
-                                        <a href="#" id="buybook" 
-                                           class="add-card buybook"><i class="flaticon-bag"></i><span>Buy book</span></a>
-                                        <a href="#" class="add-card"><i class="fa fa-eye"></i><span>View
-                                                book</span></a>
+                            
+                            <ui:repeat var="dataBook" value="#{book.indexBooks('English')}">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <h:graphicImage value="/images/book.jpg" />
+                                        <div class="pi-links">
+                                            <a href="#" id="buybook" 
+                                               class="add-card buybook"><i class="flaticon-bag"></i><span><h:form>
+                                                        <h:commandButton action="#{soldBook.buy(dataBook.id,dataBook.userId)}" value="Buy Book" />
+                                                       </h:form></span></a>
+                                               <a href="#" class="add-card"><i class="fa fa-eye"></i><span>
+                                                       <h:form>
+                                                           <h:commandButton action="#{book.view(dataBook.id)}" value="VIew Book" />
+                                                       </h:form>
+                                                   </span></a>
+                                        </div>
+                                    </div>
+                                    <div class="pi-text">
+                                        <h6>#{dataBook.price} </h6>
+                                        <p>#{dataBook.name} by #{dataBook.authorName} </p>
                                     </div>
                                 </div>
-                                <div class="pi-text">
-                                    <h6>$35,00</h6>
-                                    <p>Flamboyant Pink Top </p>
-                                </div>
-                            </div>
+                            </ui:repeat>
+
                         </div>
                     </div>
                 </section>

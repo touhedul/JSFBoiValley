@@ -44,9 +44,9 @@
             </button>
 
             <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
-                <h:form id="search_form" class="header-search-form ml-auto">
-                    <input placeholder="Search..." type="text" name="search_key" id="search_box" required ="true"/>
-                    <button><i class="flaticon-search"></i></button>
+                <h:form id="search_form" class="header-search-form ml-auto" onsubmit="document.getElementById('search_form').action = 'faces/search.xhtml';">
+                    <h:inputText value="#{book.searchKey}"/>
+                   <button><i class="flaticon-search"></i></button>
                 </h:form>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <!-- <li style="margin-left:250px;"><a class="nav-link" href="#"></a></li> -->
@@ -232,7 +232,7 @@
                 </div>
             </div>
             <div class="social-links-warp">
-                {{-- <div class="container">
+    {{-- <div class="container">
 				<div class="row justify-content-cente">
 					<div class="social-links ml-auto mr-auto">
 						<a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
@@ -281,7 +281,7 @@
         {{--automomplete--}}
         <script src="js/jquery.easy-autocomplete.min.js" ></script>
         {{--bootstrap js--}}
-        {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> --}}
+    {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> --}}
         <!-- Fonts -->
 
 

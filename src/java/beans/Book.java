@@ -34,6 +34,18 @@ public class Book {
     private String department;
     private String year;
     private int userId;
+    
+    private String searchKey;
+
+    public String getSearchKey() {
+        return searchKey;
+    }
+
+    public void setSearchKey(String searchKey) {
+        this.searchKey = searchKey;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -234,6 +246,33 @@ public class Book {
             Statement stmt = connection.createStatement();
 
             ResultSet rs = stmt.executeQuery("select * from books where status = 1 and department = '" + dept + "'");
+            while (rs.next()) {
+                Book book = new Book();
+                book.setId(rs.getInt("id"));
+                book.setName(rs.getString("name"));
+                book.setAuthorName(rs.getString("author_name"));
+                book.setDepartment(rs.getString("department"));
+                book.setDescription(rs.getString("description"));
+                book.setYear(rs.getString("year"));
+                book.setPrice(rs.getInt("price"));
+                book.setUserId(rs.getInt("user_id"));
+                bookList.add(book);
+            }
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return bookList;
+    }
+    public ArrayList searchBooks() {
+        ArrayList bookList = new ArrayList();
+        try {
+            DBConnection dBConnection = new DBConnection();
+            Connection connection = dBConnection.getConnection();
+            Statement stmt = connection.createStatement();
+
+            String dept = "ICE";
+            ResultSet rs = stmt.executeQuery("select * from books where status = 1 and name Like '%" + searchKey + "%'");
             while (rs.next()) {
                 Book book = new Book();
                 book.setId(rs.getInt("id"));
